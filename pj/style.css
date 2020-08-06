@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  min-width: 450px;
+  min-height: 450px;
+  background: #014552;
+  color: #C0F3FF;
+}
+
+.container{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  background: #014552;
+}
+.calc{
+  position: relative;
+  display: grid;
+  height: 450px;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  margin-top: 15vh;
+  grid-template-rows: 25% auto;
+  grid-template-columns: auto;
+  background:rgba(0, 38, 46, 0.3);
+}
+
+.screen{
+  grid-row: 1;
+  height: 90%;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+  margin: auto;
+  background: lightyellow;
+  text-align: right;
+  cursor: default;
+  background:rgba(0, 38, 46, 0.1);
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 40% auto;
+}
+#formula{
+  grid-row: 1;
+  height: 40.5px;
+  line-height: 40.5px;
+  width: 100%;
+  color: rgba(192,243,255,0.5);
+  padding-right: 10px;
+  font-size: 1.15em;
+}
+#result{
+  grid-row: 2;
+  height: 60.75px;
+  line-height: 60.75px;
+  width: 100%;
+  padding-right: 10px;
+  font-size: 1.5em;
+}
+.buttonArea{
+  grid-row: 2;
+}
+.buttonContainer{
+  display: flex;
+  margin: auto;
+}
+.numberButton{
+  margin: 2px;
+  width: 25%;
+  height: 52px;
+  background: rgba(3,45,54,0.3);
+  border: none;
+  color: #C0F3FF;
+  font-size: 1.25em;
+  outline: none;
+}
+#equal{
+  margin: 2px;
+  width: 50%;
+  height: 52px;
+  background: rgba(3,45,54,0.3);
+  border: none;
+  outline: none;
+  color: #EDFBFB;
+  font-size: 1.25em;
+}
+.buttonContainer button:hover{
+  box-shadow: 0 0 10px rgba(142,204,212,0.15);
+  text-shadow: 0 0 3px #C0F3FF;
+}
