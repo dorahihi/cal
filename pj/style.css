@@ -70,7 +70,7 @@ body{
   display: flex;
   margin: auto;
 }
-.numberButton{
+Button{
   margin: 2px;
   width: 25%;
   height: 52px;
@@ -80,17 +80,22 @@ body{
   font-size: 1.25em;
   outline: none;
 }
+.numberButton{
+
+}
 #equal{
   margin: 2px;
   width: 50%;
   height: 52px;
-  background: rgba(3,45,54,0.3);
-  border: none;
-  outline: none;
-  color: #EDFBFB;
-  font-size: 1.25em;
+}
+#dot{
+
 }
 .buttonContainer button:hover{
   box-shadow: 0 0 10px rgba(142,204,212,0.15);
   text-shadow: 0 0 3px #C0F3FF;
+}
+
+.deleteButton{
+
 }
