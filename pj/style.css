@@ -55,7 +55,7 @@ body{
   padding-right: 10px;
   font-size: 1.15em;
 }
-#result{
+#num{
   grid-row: 2;
   height: 60.75px;
   line-height: 60.75px;
@@ -80,9 +80,6 @@ Button{
   font-size: 1.25em;
   outline: none;
 }
-.numberButton{
-
-}
 #equal{
   margin: 2px;
   width: 50%;
@@ -94,8 +91,4 @@ Button{
 .buttonContainer button:hover{
   box-shadow: 0 0 10px rgba(142,204,212,0.15);
   text-shadow: 0 0 3px #C0F3FF;
-}
-
-.deleteButton{
-
 }
