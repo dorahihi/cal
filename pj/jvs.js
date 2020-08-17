@@ -1,7 +1,6 @@
 var formula = "";
 var result = "";
-var lastOperator = "*";
-var lastResult = 1;
+var num = "";
 
 function mosDown(x){
   x.style.background = "rgba(142,204,212,0.15)";
@@ -11,127 +10,95 @@ function mosUp(x){
   x.style.background = "rgba(3,45,54,0.3)";
   x.style.color = "#C0F3FF";
 }
-function displayResult(x){
-    result = result + x;
-    document.getElementById("result").innerHTML = result;
+function  dispNum(n){
+  let x = document.getElementById('num');
+  num += n;
+  x.innerHTML = num;
 }
-function displayFormula(op){
-  let x = document.getElementById("formula");
-  if ((formula === "")&&(result === "")){
-      x.style.borderBottom = "none";
-  } else{
-      x.style.borderBottom = "1px solid #014552";
-  }
-  if(op === ""){
-    formula += " " + result;
-  } else{
-    formula = formula + " "+ result + " "+op;
-  }
+function dispFor(op){
+  let x = document.getElementById('formula');
+  if ((formula === "")&&(num === "")){
+        x.style.borderBottom = "none";
+    } else{
+        x.style.borderBottom = "1px solid #014552";
+    }
+    if(op === "="){
+      formula +=" "+"=";
+    } else{
+      if(num === "."){
+        num = "0";
+      }
+      formula += num +" "+ op +" ";
+      num = "";
+      dispNum("");
+    }
   x.innerHTML = formula;
-
+}
+function getNum(x){
+  let n = x.innerHTML;
+  if (formula.search(/=/)!==-1){
+    c()
+    formula = "";
+  }
+  dispNum(n);
 }
 function getOp(x){
   let op = x.innerHTML;
-  if (formula.search(/=/)!==-1){
-    formula = "";
-    result = lastResult;
-    lastResult = 0;
-    lastOperator = "+";
-  }
-  if(isSignOfNum(op)){
-    displayResult(op);
+  if (isNumSign(op)){
+    dispNum(op);
   } else{
-    solving(lastResult, lastOperator, result);
-    lastOperator = op;
-    displayFormula(op);
-    result = "";
-    displayResult("");
+    if(formula.charAt(formula.length -2).search(/\d/)===-1&&num===""){
+        formula = formula.slice(0,formula.length-2);
+    }
+    if (formula.search(/=/)!==-1){
+      c()
+      formula = result;
+    }
+    dispFor(op);
   }
 }
-
-
-function getNum(x){
-  if (formula.search(/=/)!==-1){
-    cE();
+function equal(){
+  if(num === ""){
+    formatFor();
   }
-  let num = x.innerHTML;
-  displayResult(num);
+  num = ifDot(num);
+  formula += " " + num;
+  result = eval(formula);
+  dispFor("=");
+  cE();
+  dispNum(result);
 }
-function getDot(){
-  if (formula.search(/=/)!==-1){
-    cE();
-  }
-  displayResult(".");
-}
-
 function del(){
-  let x = document.getElementById('result');
-  if(result.search(/[0-9]/) === -1){
-    cE();
+  if(num.length>0){
+    num = num.slice(0,num.length-1);
   }
-  if (result.length !== 0){
-    result = result.slice( 0, result.length-1);
-  }
-  x.innerHTML = result;
+  dispNum("");
 }
 function c(){
-  if (result.length != 0){
-    result = "";
-  }
-  document.getElementById('result').innerHTML = result;
+  formula = "";
+  num = "";
+  dispFor(formula);
+  dispNum(num);
+  formula = "";
 }
 function cE(){
-  result = "";
-  formula = "";
-  lastResult = 0;
-  lastOperator = "+";
-  displayResult(result);
-  displayFormula(formula);
+  num = "";
+  dispNum("");
 }
-function solving(a, op, b){
-  switch (op) {
-    case "-":
-        subtract(a, b);
-        break;
-    case "+":
-        plus(a, b);
-        break;
-    case "*":
-        multiply(a, b);
-        break;
-    default:
-        divide(a, b);
+
+function formatFor(){
+  let op = formula.slice(formula.length-2,formula.length-1);
+  if(op.search(/\d/)===-1){
+    formula = formula.slice(0,formula.length-2);
   }
 }
-function subtract(a, b){
-  lastResult = Number(a) - Number(b);
-}
-function plus(a, b){
-  lastResult =  Number(a) + Number(b);
-}
-function divide(a, b){
-  if (b === "0"){
-    lastResult = "Divided by zero!!";
-  } else{
-    lastResult = Number(a) / Number(b);
+function ifDot(n){
+  if(n==="."){
+    return "0";
+  }else {
+    return n;
   }
 }
-function multiply(a, b){
-  lastResult = Number(a) * Number(b);
-}
-function equalPressing(){
-  solving(lastResult, lastOperator, result);
-  if (isNaN(lastResult)){
-    displayFormula("");
-    result = "";
-    displayResult(lastResult);
-  } else{
-    result = result + " " + "=";
-    displayFormula("");
-    result = "";
-    displayResult(lastResult);
-  }
-}
-function isSignOfNum(op){
-  return (op==="-"||op==="+")&&(result==="");
+function isNumSign(op){
+  return ((op==='+')||(op==='-'))&&num==="";
 }

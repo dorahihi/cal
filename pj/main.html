@@ -14,43 +14,43 @@
     <div class="calc">
       <div class="screen">
         <div id="formula"></div>
-        <div id="result"></div>
+        <div id="num"></div>
       </div>
       <div class="buttonArea">
         <div class="buttonContainer">
-          <button class="operatorButton" onmousedown="mosDown(this)" onmouseup="mosUp(this)">%</button>
-          <button class="deleteButton" onclick="cE()" onmousedown="mosDown(this)" onmouseup="mosUp(this)">CE</button>
-          <button class="deleteButton" onclick="c()" onmousedown="mosDown(this)" onmouseup="mosUp(this)">C</button>
-          <button class="deleteButton" onclick="del()" onmousedown="mosDown(this)" onmouseup="mosUp(this)"><i class="fas fa-backspace"></i></button>
+          <button onclick="perc()" onmousedown="mosDown(this)" onmouseup="mosUp(this)">%</button>
+          <button onclick="cE()" onmousedown="mosDown(this)" onmouseup="mosUp(this)">CE</button>
+          <button onclick="c()" onmousedown="mosDown(this)" onmouseup="mosUp(this)">C</button>
+          <button onclick="del()" onmousedown="mosDown(this)" onmouseup="mosUp(this)"><i class="fas fa-backspace"></i></button>
         </div>
         <div class="buttonContainer">
-          <button class="operatorButton" onmousedown="mosDown(this)" onmouseup="mosUp(this)">x&#178;</button>
-          <button class="operatorButton" onmousedown="mosDown(this)" onmouseup="mosUp(this)">&sup1;/x</button>
-          <button class="operatorButton" onmousedown="mosDown(this)" onmouseup="mosUp(this)">&#8730;x</button>
-          <button class="operatorButton" onclick="getOp(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">/</button>
+          <button onmousedown="mosDown(this)" onmouseup="mosUp(this)">x&#178;</button>
+          <button onmousedown="mosDown(this)" onmouseup="mosUp(this)">&sup1;/x</button>
+          <button onmousedown="mosDown(this)" onmouseup="mosUp(this)">&#8730;x</button>
+          <button onclick="getOp(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">/</button>
         </div>
         <div class="buttonContainer">
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">7</button>
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">8</button>
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">9</button>
-          <button class="operatorButton" onclick="getOp(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">*</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">7</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">8</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">9</button>
+          <button onclick="getOp(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">*</button>
         </div>
         <div class="buttonContainer">
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">4</button>
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">5</button>
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">6</button>
-          <button class="operatorButton" onclick="getOp(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">-</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">4</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">5</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">6</button>
+          <button onclick="getOp(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">-</button>
         </div>
         <div class="buttonContainer">
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">1</button>
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">2</button>
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">3</button>
-          <button class="operatorButton" onclick="getOp(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">+</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">1</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">2</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">3</button>
+          <button onclick="getOp(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">+</button>
         </div>
         <div class="buttonContainer">
-          <button class="numberButton" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">0</button>
-          <button id="dot" onclick="getDot()" onmousedown="mosDown(this)" onmouseup="mosUp(this)">.</button>
-          <button id="equal" onclick="equalPressing()" onmousedown="mosDown(this)" onmouseup="mosUp(this)">=</button>
+          <button onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">0</button>
+          <button id="dot" onclick="getNum(this)" onmousedown="mosDown(this)" onmouseup="mosUp(this)">.</button>
+          <button id="equal" onclick="equal()" onmousedown="mosDown(this)" onmouseup="mosUp(this)">=</button>
         </div>
 
       </div>
