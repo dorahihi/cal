@@ -163,7 +163,7 @@ function onePerX(){
       dispNum("");
     } else{
       c();
-      num = Math.pow(Number(result),2);
+      num = 1/Number(result);
       dispNum("");
     }
   } else{
@@ -172,7 +172,7 @@ function onePerX(){
       num = "Cannot divide by zero!";
       dispNum("");
     } else{
-      num = Math.pow(Number(num),2);
+      num = 1/Number(num);
       dispNum("");
     }
   }
