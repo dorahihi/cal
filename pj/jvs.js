@@ -1,4 +1,5 @@
 var formula = "";
+var fForDisp = "";
 var result = "";
 var num = "";
 
@@ -15,46 +16,94 @@ function  dispNum(n){
   num += n;
   x.innerHTML = num;
 }
-function dispFor(op){
+function addFor(op){
+  if(num === ""){
+    formula +=" " + op + " ";
+  } else{
+    formula += Number(num) + " " + op + " ";
+  }
+}
+function dispFor(n){
   let x = document.getElementById('formula');
-  if ((formula === "")&&(num === "")){
-        x.style.borderBottom = "none";
-    } else{
-        x.style.borderBottom = "1px solid #014552";
-    }
-    if(op === "="){
-      formula +=" "+"=";
-    } else{
-      if(num === "."){
-        num = "0";
-      }
-      formula += num +" "+ op +" ";
-      num = "";
-      dispNum("");
-    }
-  x.innerHTML = formula;
+  if(fForDisp === "" && num === ""){
+    x.style.borderBottom = "none";
+  } else{
+      x.style.borderBottom = "1px solid #014552";
+  }
+
+  fForDisp += n;
+  num = "";
+  dispNum("");
+  x.innerHTML = fForDisp;
 }
 function getNum(x){
-  let n = x.innerHTML;
-  if (formula.search(/=/)!==-1){
-    c()
-    formula = "";
+  if(fForDisp.search(/=/)!==-1){
+    c();
   }
-  dispNum(n);
+  let n = x.innerHTML;
+  if(n==="."&&num.search(/\./)!==-1){}
+  else {
+    dispNum(n);
+  }
 }
 function getOp(x){
   let op = x.innerHTML;
-  if (isNumSign(op)){
-    dispNum(op);
+  let n = "";
+  if(fForDisp.search(/=/)!==-1){
+    if(result === NaN){
+      c();
+    } else{
+      c();
+      num = result;
+      addFor(op);
+      dispFor(result + " "+ op +" ");
+    }
   } else{
-    if(formula.charAt(formula.length -2).search(/\d/)===-1&&num===""){
+    if(isNumSign(op)){
+      dispNum(op);
+    } else{
+      if(formula.charAt(formula.length -2).search(/\d/)===-1&&num===""){
         formula = formula.slice(0,formula.length-2);
+        fForDisp = fForDisp.slice(0,fForDisp.length-2);
+        n = op + " ";
+      } else{
+        n = Number(num)+ " "+ op +" ";
+      }
+      addFor(op);
+      dispFor(n);
     }
-    if (formula.search(/=/)!==-1){
-      c()
-      formula = result;
-    }
-    dispFor(op);
+  }
+
+}
+function perc(){
+
+
+}
+function del(){
+  if(num.length>0){
+      num = num.slice(0,num.length-1);
+  }
+  if(fForDisp.search(/=/)!==-1){
+    c();
+  } else{
+    dispNum("");
+  }
+}
+function c(){
+  formula = "";
+  fForDisp = "";
+  num = "";
+  dispFor("");
+}
+function cE(){
+  num = "";
+  dispNum("");
+}
+function formatFor(){
+  let op = formula.slice(formula.length-2,formula.length-1);
+  if(op.search(/\d/)===-1){
+    formula = formula.slice(0,formula.length-2);
+    fForDisp = fForDisp.slice(0,formula.length-2);
   }
 }
 function equal(){
@@ -62,35 +111,11 @@ function equal(){
     formatFor();
   }
   num = ifDot(num);
-  formula += " " + num;
+  formula += " " + Number(num);
   result = eval(formula);
-  dispFor("=");
+  dispFor(Number(num)+" =");
   cE();
   dispNum(result);
-}
-function del(){
-  if(num.length>0){
-    num = num.slice(0,num.length-1);
-  }
-  dispNum("");
-}
-function c(){
-  formula = "";
-  num = "";
-  dispFor(formula);
-  dispNum(num);
-  formula = "";
-}
-function cE(){
-  num = "";
-  dispNum("");
-}
-
-function formatFor(){
-  let op = formula.slice(formula.length-2,formula.length-1);
-  if(op.search(/\d/)===-1){
-    formula = formula.slice(0,formula.length-2);
-  }
 }
 function ifDot(n){
   if(n==="."){
@@ -100,5 +125,90 @@ function ifDot(n){
   }
 }
 function isNumSign(op){
-  return ((op==='+')||(op==='-'))&&num==="";
+  let c = ((op==='+')||(op==='-'));
+  if(c && num === ""){
+    return true;
+  } else if(c && (num === "+"||num === "-")){
+    num = "";
+    return true;
+  } else{
+    return false;
+  }
+}
+function perc(){
+  if(fForDisp.search(/=/)!==-1){
+    c();
+    num =Number(result)*0.01;
+    dispNum("");
+  } else{
+    num = Number(num) * 0.01;
+    dispNum("");
+  }
+}
+function square(){
+  if(fForDisp.search(/=/)!==-1){
+    c();
+    num = Math.pow(Number(result),2);
+    dispNum("");
+  } else{
+    num = Math.pow(Number(num),2);
+    dispNum("");
+  }
+}
+function onePerX(){
+  if(fForDisp.search(/=/)!==-1){
+    if(Number(result)===0){
+      c();
+      num = "Cannot divide by zero!";
+      dispNum("");
+    } else{
+      c();
+      num = Math.pow(Number(result),2);
+      dispNum("");
+    }
+  } else{
+    if(Number(num)===0){
+      c();
+      num = "Cannot divide by zero!";
+      dispNum("");
+    } else{
+      num = Math.pow(Number(num),2);
+      dispNum("");
+    }
+  }
+}
+function squaredRoot(){
+  if(fForDisp.search(/=/)!==-1){
+    if(Number(result)<0){
+      c();
+      num = "Invalid number!";
+      dispNum("");
+    } else{
+      c();
+      num = Math.sqrt(Number(result));
+      dispNum("");
+    }
+  } else{
+    if(Number(num)<0){
+      c();
+      num = "Invalid number!";
+      dispNum("");
+    } else{
+      num = Math.sqrt(Number(num));
+      dispNum("");
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+function hihi(){
+  document.getElementById('haha').innerHTML = formula;
 }
